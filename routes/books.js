@@ -1,19 +1,17 @@
 const { Router } = require("express");
 const path = require("path");
-const { getAllBooks, getOneBook } = require("../modules/books");
+const { getAllBooks, getOneBook, addBook } = require("../modules/books");
 
 // Router
 const router = Router();
 
-// index 
+// index
 router.get("/", getAllBooks);
 
 // show
-router.get('/:bookId', getOneBook)
+router.get("/:bookId", getOneBook);
 
-// add 
-router.get("/add", (req, res) => {
-  res.send("book");
-});
+// add
+router.post("/", addBook);
 
 module.exports = router;

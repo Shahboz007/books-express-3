@@ -11,9 +11,30 @@ function successRes(res, { message = "Muvaffaqiyatli", data = null }) {
   });
 }
 
+// created
+function createdRes(res, { message = "Book created successfully", data = {} }) {
+  res.status(201);
+  res.contentType(contentType);
+  res.send({
+    success: true,
+    message,
+    data,
+  });
+}
+
 // not found
 function notFoundRes(res, { message = "Not Found" }) {
   res.status(404);
+  res.contentType(contentType);
+  res.send({
+    success: false,
+    message,
+  });
+}
+
+// Exists res
+function alreadyExistsRes(res, { message = "Already exists" }) {
+  res.status(403);
   res.contentType(contentType);
   res.send({
     success: false,
@@ -35,5 +56,6 @@ function serverErrorRes(res, err) {
 module.exports = {
   successRes,
   notFoundRes,
+  alreadyExistsRes,
   serverErrorRes,
 };
