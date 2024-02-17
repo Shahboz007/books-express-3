@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+.header {
+  background: rgb(241, 241, 241);
+  padding: 0 80px;
+}
+.header__nav {
+  max-width: 1400px;
+  margin: auto;
+}
+.header__nav--ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.header__nav--ul li a {
+  display: inline-block;
+  padding: 8px 14px;
+  text-decoration: none;
+  color: rgb(8, 11, 38);
+  font-family: sans-serif;
+  font-weight: 600;
+}
+.header__nav--ul li a:hover {
+  color: rgb(34, 47, 167);
+}
