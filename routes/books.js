@@ -1,20 +1,16 @@
 const { Router } = require("express");
-const path = require('path')
+const path = require("path");
+const { getAllBooks } = require("../modules/books");
 
 // Router
 const router = Router();
 
-// view path
-const viewsPath = path.join(__dirname, '..', 'views/books')
-
 // index page
-router.get('/', (req,res) => {
-  res.sendFile(path.join(viewsPath, 'books.html'))
-})
+router.get("/", getAllBooks);
 
 // add page
-router.get('/add', (req,res) => {
-  res.sendFile(path.join(viewsPath, 'books-add.html'))
-})
+router.get("/add", (req, res) => {
+  res.send("book");
+});
 
 module.exports = router;

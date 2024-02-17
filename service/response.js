@@ -13,7 +13,8 @@ function successRes(res, { message = "Muvaffaqiyatli", data = null }) {
 
 // server error
 function serverErrorRes(res, res) {
-  res.writeHead(500, contentType);
+  res.status(500)
+  res.contentType(contentType)
   res.send({
     success: false,
     message: "Internal Server Error",

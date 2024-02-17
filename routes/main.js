@@ -8,7 +8,7 @@ const router = Router();
 const viewsPath = path.join(__dirname,"..", "views");
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(viewsPath, "main.html"));
+  res.send('Home')
 });
 
 module.exports = router;
