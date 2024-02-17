@@ -109,9 +109,40 @@ function updateBook(req, res) {
     });
 }
 
+// delete
+function deleteBook(req, res) {
+  const { bookId } = req.params;
+
+  readFile(FILE_PATH)
+    .then((books) => {
+      const index = books.findIndex((book) => book.id.toString() === bookId);
+
+      if (index !== -1) {
+        // return data
+        const deleteBook = books[index];
+        delete deleteBook.id
+
+        // write data
+        const filterBooks = books.slice(index, 1);
+
+        // write
+        writeFile(FILE_PATH, filterBooks).then(() =>
+          successRes(res, {
+            message: `Deleted book successfully`,
+            data: deleteBook,
+          })
+        );
+      } else {
+        return notFoundRes(res, { message: `This book "${bookId}" not found` });
+      }
+    })
+    .catch((err) => serverErrorRes(res, err));
+}
+
 module.exports = {
   getAllBooks,
   getOneBook,
   addBook,
   updateBook,
+  deleteBook
 };

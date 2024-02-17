@@ -5,6 +5,7 @@ const {
   getOneBook,
   addBook,
   updateBook,
+  deleteBook,
 } = require("../modules/books");
 
 // Router
@@ -21,5 +22,8 @@ router.post("/", addBook);
 
 // update
 router.put("/:bookId", updateBook);
+
+// delete
+router.delete("/:bookId", deleteBook)
 
 module.exports = router;
