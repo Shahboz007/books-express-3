@@ -34,7 +34,7 @@ function notFoundRes(res, { message = "Not Found" }) {
 
 // Exists res
 function alreadyExistsRes(res, { message = "Already exists" }) {
-  res.status(403);
+  res.status(400);
   res.contentType(contentType);
   res.send({
     success: false,
