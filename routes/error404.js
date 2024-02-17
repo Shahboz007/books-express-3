@@ -1,5 +1,6 @@
 const {Router} = require('express')
-const path = require('path')
+const path = require('path');
+const { notFoundRes } = require('../service/response');
 
 // Router
 const router = Router();
@@ -8,7 +9,7 @@ const router = Router();
 const viewsPath = path.join(__dirname, '..','views/errors');
 
 router.all('*',(req, res) => {
-  res.status(404).sendFile(path.join(viewsPath,'404.html'))
+  res.status(404).send(notFoundRes(res,{message:'Page not found'}))
 })
 
 module.exports = router

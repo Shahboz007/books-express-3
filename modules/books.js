@@ -28,7 +28,7 @@ function getOneBook(req, res) {
     .then((books) => {
       const index = books.findIndex((item) => item.id);
       if (index !== -1) return successRes(res, { data: books[index] });
-      return notFoundRes(res, { message: `This ${bookId} not found` });
+      return notFoundRes(res, { message: `This book ${bookId} is not found` });
     })
     .catch((err) => serverErrorRes(res, err));
 }
@@ -101,7 +101,7 @@ function updateBook(req, res) {
           });
         }
       } else {
-        return notFoundRes(res, { message: `This book "${bookId}" not found` });
+        return notFoundRes(res, { message: `This book "${bookId}" is not found` });
       }
     })
     .catch((err) => {
@@ -133,7 +133,7 @@ function deleteBook(req, res) {
           })
         );
       } else {
-        return notFoundRes(res, { message: `This book "${bookId}" not found` });
+        return notFoundRes(res, { message: `This book "${bookId}" is not found` });
       }
     })
     .catch((err) => serverErrorRes(res, err));
