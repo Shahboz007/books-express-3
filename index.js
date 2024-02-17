@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path')
 
 // app
 const app = express();
@@ -7,6 +8,9 @@ const app = express();
 const mainRoutes = require("./routes/main");
 const booksRoutes = require("./routes/books");
 const error404Routes = require("./routes/error404");
+
+// static folder
+app.use(express.static(path.join(__dirname,'public')))
 
 // all routes
 app.use("/books", booksRoutes);
