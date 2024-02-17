@@ -30,3 +30,10 @@
 .header__nav--ul li a:hover {
   color: rgb(34, 47, 167);
 }
+
+/* Page title */
+.page--title {
+  font-family: sans-serif;
+  line-height: 180%;  
+  margin: 1rem 1.2rem;
+}
