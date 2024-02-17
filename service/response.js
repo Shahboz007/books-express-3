@@ -11,10 +11,20 @@ function successRes(res, { message = "Muvaffaqiyatli", data = null }) {
   });
 }
 
+// not found
+function notFoundRes(res, { message = "Not Found" }) {
+  res.status(404);
+  res.contentType(contentType);
+  res.send({
+    success: false,
+    message,
+  });
+}
+
 // server error
-function serverErrorRes(res, res) {
-  res.status(500)
-  res.contentType(contentType)
+function serverErrorRes(res, err) {
+  res.status(500);
+  res.contentType(contentType);
   res.send({
     success: false,
     message: "Internal Server Error",
@@ -24,5 +34,6 @@ function serverErrorRes(res, res) {
 
 module.exports = {
   successRes,
+  notFoundRes,
   serverErrorRes,
 };
