@@ -66,8 +66,52 @@ function addBook(req, res) {
     .catch((err) => serverErrorRes(res, err));
 }
 
+// update
+function updateBook(req, res) {
+  const { bookId } = req.params;
+  const { title, author } = req.body;
+
+  readFile(FILE_PATH)
+    .then((books) => {
+      const index = books.findIndex((item) => item.id.toString() === bookId);
+      if (index !== -1) {
+        const existingTitleIndex = books.findIndex(
+          (book) => book.title === title
+        );
+        if (existingTitleIndex === -1) {
+          // update data
+          const updatedBook = { id: books[index].id, title, author };
+          books[index] = updatedBook;
+
+          // delete return id
+          delete updateBook.id;
+
+          // write file
+          writeFile(FILE_PATH, books)
+            .then(() =>
+              successRes(res, {
+                message: "Updated successfully",
+                data: updateBook,
+              })
+            )
+            .catch((err) => serverErrorRes(res, err));
+        } else {
+          return alreadyExistsRes(res, {
+            message: `This "${title}" book already exists`,
+          });
+        }
+      } else {
+        return notFoundRes(res, { message: `This book "${bookId}" not found` });
+      }
+    })
+    .catch((err) => {
+      return serverErrorRes(res, err);
+    });
+}
+
 module.exports = {
   getAllBooks,
   getOneBook,
   addBook,
+  updateBook,
 };
